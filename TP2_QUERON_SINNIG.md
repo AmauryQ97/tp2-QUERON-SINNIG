@@ -96,17 +96,14 @@ factor $1
 
 #!/bin/bash
 
-val=$RANDOM
+val=$(echo $RANDOM % 1000 + 1|bc)
+echo $val
+n=$1
+finish=0
 
-if [ $(( val % 1000 + 1)) -lt 1000 ]
-then 
-
-    echo $val
-    n=$1
-    finish=0
-    while [ $finish -eq 0 ]
-    do
-	read -p "Tapez un nombre : " n
+	while [ $finish -eq 0 ]
+    	do
+		read -p "Tapez un nombre entre 1 et 1000 : " n
 	if [ $val -eq $n ]
 	then 
 	    echo "You WINNNNN!"
@@ -114,36 +111,11 @@ then
 	elif [ $val -gt $n ]
 	then
 	    echo "C'est plus!"
-	    echo "Essayez encore:"
+	    echo "Essayez encore : "
 	    read n
 	else
 	    echo "C'est moins!"
-	    echo "Essayez encore:"
+	    echo "Essayez encore : "
 	    read n
 	fi
     done
-else 
-    echo 'mauvais random'
-fi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
